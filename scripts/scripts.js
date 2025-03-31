@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 import {
   buildBlock,
   loadHeader,
   loadFooter,
   decorateButtons,
   decorateIcons,
-  decorateLinkedPictures,
   decorateSections,
   decorateBlocks,
   decorateTemplateAndTheme,
@@ -41,15 +41,13 @@ async function loadFonts() {
   }
 }
 
-const disableHeroAutoBlock = true;
-
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
   try {
-    if (!disableHeroAutoBlock) buildHeroBlock(main);
+    // buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -65,6 +63,7 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
+  // eslint-disable-next-line no-use-before-define
   decorateLinkedPictures(main);
   buildAutoBlocks(main);
   decorateSections(main);
@@ -131,3 +130,17 @@ async function loadPage() {
 }
 
 loadPage();
+
+/**
+ * Decorates linked pictures in a given block.
+ * @param {HTMLElement} block - The block element containing the pictures.
+ */
+function decorateLinkedPictures(block) {
+  block.querySelectorAll('picture + br + a').forEach((a) => {
+    // remove br
+    a.previousElementSibling.remove();
+    const picture = a.previousElementSibling;
+    a.textContent = '';
+    a.append(picture);
+  });
+}
