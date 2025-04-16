@@ -1,74 +1,85 @@
+
 .cards-wrapper {
-  display: flex;
-  flex-direction: column; /* Stack top-level elements vertically */
-  gap: 40px; /* Space between the top section and the card grid */
+  display: flex; /* Flexbox for overall layout */
+  flex-wrap: wrap; /* Allow cards to wrap into rows */
+  justify-content: space-between; /* Space cards evenly */
+  gap: 8px; /* Reduce spacing for tighter grid alignment */
+  padding: 0;
 }
 
-.cards-wrapper > .cards.block {
-  display: flex; /* Use flexbox for the overall card container */
-  flex-flow: row wrap; /* Allow cards to wrap into multiple rows */ /* Ensure cards are side-by-side */
-  justify-content: center; /* Center align all cards */
-  gap: 16px; /* Reduce spacing between cards to match original layout */
-  padding: 0;
-  margin: 0;
-}
-
-.cards-wrapper > .cards.block > ul {
-  display: flex; /* Ensure the list acts as a flex container */
-  flex-flow: row wrap; /* Wrap the cards into multiple rows */ /* Ensure cards are side-by-side */
-  justify-content: center; /* Center align the cards horizontally */
-  gap: 16px; /* Reduce spacing between cards to match original layout */
-  padding: 0;
-  margin: 0;
+.cards.block > ul {
+  display: flex; /* Flex container for the list */
+  flex-wrap: wrap; /* Wrap cards into rows */
+  justify-content: space-between; /* Space cards evenly in each row */
+  gap: 8px; /* Further reduce spacing between cards */
   list-style: none; /* Remove default list styling */
+  padding: 0;
+  margin: 0;
 }
 
-.cards-wrapper > .cards.block > ul > li {
-  display: flex; /* Make each card a flex container */
-  flex-direction: column; /* Stack image and red card body vertically */
-  flex: 0 1 calc(33.333% - 16px); /* Fixed card width for three columns */
+.cards.block > ul > li {
+  display: flex; /* Flex container for individual cards */
+  flex-direction: column; /* Stack card content vertically within each card */
+  flex: 0 1 calc(33.333% - 8px); /* Adjust width for three cards per row */
   box-sizing: border-box; /* Ensure consistent sizing */
-  background-color: white; /* Add a white background for cards */
-  overflow: hidden; /* Prevent overflow */
-  border-radius: 0; /* Remove rounded corners */
-  margin: 0; /* Remove unnecessary margins */
+  background-color: #ffffff; /* Make cards white */
+  overflow: hidden; /* Prevent content overflow */
 }
 
-.cards-wrapper > .cards.block > ul > li > .cards-card-image {
+.cards-card-image {
+  width: 100%; /* Image spans full width */
+  aspect-ratio: 16 / 9; /* Match original image proportions */
+}
+
+.cards-card-image img {
   width: 100%;
-  display: block; /* Add this to remove inline element spacing */
-  line-height: 0; /* Add this to remove any line-height gaps */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure proportional scaling */
 }
 
-.cards-wrapper > .cards.block > ul > li img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  margin: 0;
-  display: block; /* Add this to remove inline element spacing */
+.cards-card-body:nth-child(2) {
+  background-color: #e30613; /* Vivid red background */
+  color: #ffffff; /* White text */
+  padding: 3px 6px; /* Reduce padding for compact styling */
+  font-size: 0.8rem; /* Match font size to original */
+  display: flex; /* Use flexbox for content alignment */
+  flex-direction: row; /* Align content horizontally */
+  align-items: center; /* Vertically center text */
+  justify-content: space-between; /* Space text evenly */
 }
 
-.cards-wrapper>.cards.block>ul>li>.cards-card-body {
-  margin: 0;
-  background-color: #eb000a;
-  color: #fff;
-  padding: 10px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
+.cards-card-body:nth-child(3) {
+  background-color: #000000; /* Black background */
+  color: #ffffff; /* White text */
+  padding: 6px; /* Reduce padding for compact layout */
+  font-size: 0.8rem; /* Match font size to original */
+  line-height: 1.2; /* Adjust spacing for readability */
+  display: flex; /* Use flexbox for inline text alignment */
+  flex-direction: row; /* Align title and links horizontally */
+  align-items: center; /* Center text vertically */
+  justify-content: space-between; /* Space text evenly */
 }
 
-.cards-wrapper>.cards.block>ul>li>.cards-card-body p {
-  margin: 0.3rem;
+.cards-card-body:nth-child(3) a {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Ensure link color matches text color */
+  font-weight: bold; /* Match original styling */
 }
 
-@media (width <= 768px) {
-  .cards-wrapper > .cards.block > ul > li {
-    flex: 0 1 calc(50% - 16px);
+.cards-card-body:nth-child(3) a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
+@media (max-width: 768px) {
+  .cards.block > ul > li {
+    flex: 0 1 calc(50% - 8px); /* Adjust width and spacing for two-column layout */
+    margin-bottom: 8px; /* Adjust vertical spacing */
   }
 }
 
-@media (width <= 580px) {
-  .cards-wrapper > .cards.block > ul > li {
-    flex: 0 1 100%;
+@media (max-width: 480px) {
+  .cards.block > ul > li {
+    flex: 0 1 100%; /* Adjust width for single-column layout */
+    margin-bottom: 8px; /* Adjust vertical spacing */
   }
 }
