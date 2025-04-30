@@ -1,23 +1,23 @@
+
 .cards-wrapper {
   display: flex;
-  flex-direction: column; /* Stack top-level elements vertically */
-  gap: 40px; /* Space between the top section and the card grid */
+  flex-wrap: wrap; /* Ensure cards wrap into multiple rows */
+  justify-content: space-between; /* Distribute cards evenly */
+  gap: 16px; /* Tight spacing between cards */
+  padding: 20px; /* Add padding around the grid */
+  margin: 0 auto; /* Center the block */
 }
 
 .cards-wrapper > .cards.block {
-  display: flex; /* Use flexbox for the overall card container */
-  flex-flow: row wrap; /* Allow cards to wrap into multiple rows */ /* Ensure cards are side-by-side */
-  justify-content: center; /* Center align all cards */
-  gap: 16px; /* Reduce spacing between cards to match original layout */
-  padding: 0;
-  margin: 0;
+  display: flex; /* Use flexbox to manage layout */
+  flex-wrap: wrap; /* Ensure rows wrap properly */
+  justify-content: space-between; /* Space cards evenly */
 }
 
 .cards-wrapper > .cards.block > ul {
   display: flex; /* Ensure the list acts as a flex container */
-  flex-flow: row wrap; /* Wrap the cards into multiple rows */ /* Ensure cards are side-by-side */
-  justify-content: center; /* Center align the cards horizontally */
-  gap: 16px; /* Reduce spacing between cards to match original layout */
+  flex-wrap: wrap; /* Wrap cards into rows */
+  justify-content: space-between; /* Maintain proper spacing */
   padding: 0;
   margin: 0;
   list-style: none; /* Remove default list styling */
@@ -25,50 +25,61 @@
 
 .cards-wrapper > .cards.block > ul > li {
   display: flex; /* Make each card a flex container */
-  flex-direction: column; /* Stack image and red card body vertically */
+  flex-direction: column; /* Stack image and text vertically */
   flex: 0 1 calc(33.333% - 16px); /* Fixed card width for three columns */
   box-sizing: border-box; /* Ensure consistent sizing */
-  background-color: white; /* Add a white background for cards */
+  background-color: white; /* Set background color for cards */
+  border-radius: 8px; /* Add rounded corners */
+  margin: 0;
   overflow: hidden; /* Prevent overflow */
-  border-radius: 0; /* Remove rounded corners */
-  margin: 0; /* Remove unnecessary margins */
 }
 
 .cards-wrapper > .cards.block > ul > li > .cards-card-image {
-  width: 100%;
-  display: block; /* Add this to remove inline element spacing */
-  line-height: 0; /* Add this to remove any line-height gaps */
+  width: 100%; /* Full card width */
+  display: block; /* Remove inline element spacing */
+  margin: 0 auto; /* Center the image */
 }
 
 .cards-wrapper > .cards.block > ul > li img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  margin: 0;
-  display: block; /* Add this to remove inline element spacing */
+  width: 100%; /* Full width for images */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure consistent cropping */
+  display: block; /* Prevent inline gaps */
 }
 
-.cards-wrapper>.cards.block>ul>li>.cards-card-body {
-  margin: 0;
-  background-color: #eb000a;
-  color: #fff;
-  padding: 10px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
+.cards-wrapper > .cards.block > ul > li > .cards-card-body {
+  display: block; /* Keep text stacked vertically */
+  padding: 12px; /* Adjust spacing for compact layout */
+  color: #fff; /* Text color */
+  text-align: left; /* Align text consistently to the left */
 }
 
-.cards-wrapper>.cards.block>ul>li>.cards-card-body p {
-  margin: 0.3rem;
+.cards-wrapper > .cards.block > ul > li:nth-child(even) .cards-card-body {
+  background-color: #000; /* Rich black background for even cards */
 }
 
-@media (width <= 768px) {
+.cards-wrapper > .cards.block > ul > li:nth-child(odd) .cards-card-body {
+  background-color: #FF0000; /* Rich red background for odd cards */
+}
+
+.cards-wrapper > .cards.block > ul > li > .cards-card-body p {
+  margin: 0.2rem; /* Tighten spacing between paragraphs */
+  font-weight: 600; /* Make text visually heavier */
+}
+
+.cards-wrapper > .cards.block > ul > li > .cards-card-body a {
+  text-decoration: underline; /* Add subtle underline for links */
+  color: #fff; /* Ensure link color matches text */
+}
+
+@media (max-width: 768px) {
   .cards-wrapper > .cards.block > ul > li {
-    flex: 0 1 calc(50% - 16px);
+    flex: 0 1 calc(50% - 16px); /* Two columns on medium screens */
   }
 }
 
-@media (width <= 580px) {
+@media (max-width: 580px) {
   .cards-wrapper > .cards.block > ul > li {
-    flex: 0 1 100%;
+    flex: 0 1 100%; /* Single column on small screens */
   }
 }
