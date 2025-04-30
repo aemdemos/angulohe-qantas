@@ -1,23 +1,22 @@
 
 .cards-wrapper {
-  display: flex;
-  flex-wrap: wrap; /* Ensure cards wrap into multiple rows */
+  display: flex; /* Use flexbox for overall layout */
+  flex-wrap: wrap; /* Wrap cards into rows */
   justify-content: space-between; /* Distribute cards evenly */
-  gap: 16px; /* Tight spacing between cards */
-  padding: 20px; /* Add padding around the grid */
-  margin: 0 auto; /* Center the block */
+  gap: 12px; /* Tighten spacing between cards */
+  padding: 40px; /* Padding around the block */
 }
 
 .cards-wrapper > .cards.block {
-  display: flex; /* Use flexbox to manage layout */
-  flex-wrap: wrap; /* Ensure rows wrap properly */
-  justify-content: space-between; /* Space cards evenly */
+  display: flex; /* Use flexbox for card container alignment */
+  flex-wrap: wrap; /* Wrap cards properly */
+  justify-content: space-between; /* Ensure even distribution */
 }
 
 .cards-wrapper > .cards.block > ul {
-  display: flex; /* Ensure the list acts as a flex container */
+  display: flex; /* Flex container for the list */
   flex-wrap: wrap; /* Wrap cards into rows */
-  justify-content: space-between; /* Maintain proper spacing */
+  justify-content: space-between; /* Align cards properly */
   padding: 0;
   margin: 0;
   list-style: none; /* Remove default list styling */
@@ -25,61 +24,68 @@
 
 .cards-wrapper > .cards.block > ul > li {
   display: flex; /* Make each card a flex container */
-  flex-direction: column; /* Stack image and text vertically */
-  flex: 0 1 calc(33.333% - 16px); /* Fixed card width for three columns */
-  box-sizing: border-box; /* Ensure consistent sizing */
-  background-color: white; /* Set background color for cards */
-  border-radius: 8px; /* Add rounded corners */
+  flex-direction: row; /* Align elements side by side */
+  flex: 0 1 calc(33.333% - 12px); /* Set card width for three columns */
+  box-sizing: border-box; /* Include padding and borders */
+  background-color: #000; /* Black background */
+  border-radius: 8px; /* Rounded corners for the card */
   margin: 0;
   overflow: hidden; /* Prevent overflow */
+  min-height: 460px; /* Ensure consistent card height */
 }
 
 .cards-wrapper > .cards.block > ul > li > .cards-card-image {
-  width: 100%; /* Full card width */
-  display: block; /* Remove inline element spacing */
-  margin: 0 auto; /* Center the image */
+  flex: 0 0 100%; /* Make the image take full width */
+  margin-bottom: 0;
+  position: relative; /* Position pseudo-elements relative to this div */
+}
+
+.cards-wrapper > .cards.block > ul > li > .cards-card-image::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 40px; /* Height of the red stripe */
+  background-color: #E10600; /* Stripe color */
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .cards-wrapper > .cards.block > ul > li img {
-  width: 100%; /* Full width for images */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  height: auto;
   object-fit: cover; /* Ensure consistent cropping */
   display: block; /* Prevent inline gaps */
 }
 
 .cards-wrapper > .cards.block > ul > li > .cards-card-body {
-  display: block; /* Keep text stacked vertically */
-  padding: 12px; /* Adjust spacing for compact layout */
-  color: #fff; /* Text color */
-  text-align: left; /* Align text consistently to the left */
-}
-
-.cards-wrapper > .cards.block > ul > li:nth-child(even) .cards-card-body {
-  background-color: #000; /* Rich black background for even cards */
-}
-
-.cards-wrapper > .cards.block > ul > li:nth-child(odd) .cards-card-body {
-  background-color: #FF0000; /* Rich red background for odd cards */
-}
-
-.cards-wrapper > .cards.block > ul > li > .cards-card-body p {
-  margin: 0.2rem; /* Tighten spacing between paragraphs */
-  font-weight: 600; /* Make text visually heavier */
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: row; /* Align text elements side by side */
+  justify-content: flex-start; /* Align content to the start */
+  padding: 16px; /* Space inside the text block */
+  color: #fff; /* White text color */
+  margin-top: -40px; /* Move text closer to the stripe */
 }
 
 .cards-wrapper > .cards.block > ul > li > .cards-card-body a {
-  text-decoration: underline; /* Add subtle underline for links */
-  color: #fff; /* Ensure link color matches text */
+  color: #E10600; /* Make links red for emphasis */
+  text-decoration: none; /* Remove underline */
+}
+
+.cards-wrapper > .cards.block > ul > li > .cards-card-body a:hover {
+  text-decoration: underline; /* Add subtle hover underline */
 }
 
 @media (max-width: 768px) {
   .cards-wrapper > .cards.block > ul > li {
-    flex: 0 1 calc(50% - 16px); /* Two columns on medium screens */
+    flex: 0 1 calc(50% - 12px); /* Two-column layout for medium screens */
+    min-height: 460px; /* Ensure consistent height across columns */
   }
 }
 
 @media (max-width: 580px) {
   .cards-wrapper > .cards.block > ul > li {
-    flex: 0 1 100%; /* Single column on small screens */
+    flex: 0 1 100%; /* Single-column layout */
+    margin: 0 auto; /* Center cards in single-column view */
   }
 }
