@@ -1,23 +1,22 @@
+
 .cards-wrapper {
-  display: flex;
-  flex-direction: column; /* Stack top-level elements vertically */
-  gap: 40px; /* Space between the top section and the card grid */
+  display: flex; /* Use flexbox for overall layout */
+  flex-wrap: wrap; /* Wrap cards into rows */
+  justify-content: space-between; /* Distribute cards evenly */
+  gap: 12px; /* Tighten spacing between cards */
+  padding: 40px; /* Padding around the block */
 }
 
 .cards-wrapper > .cards.block {
-  display: flex; /* Use flexbox for the overall card container */
-  flex-flow: row wrap; /* Allow cards to wrap into multiple rows */ /* Ensure cards are side-by-side */
-  justify-content: center; /* Center align all cards */
-  gap: 16px; /* Reduce spacing between cards to match original layout */
-  padding: 0;
-  margin: 0;
+  display: flex; /* Use flexbox for card container alignment */
+  flex-wrap: wrap; /* Wrap cards properly */
+  justify-content: space-between; /* Ensure even distribution */
 }
 
 .cards-wrapper > .cards.block > ul {
-  display: flex; /* Ensure the list acts as a flex container */
-  flex-flow: row wrap; /* Wrap the cards into multiple rows */ /* Ensure cards are side-by-side */
-  justify-content: center; /* Center align the cards horizontally */
-  gap: 16px; /* Reduce spacing between cards to match original layout */
+  display: flex; /* Flex container for the list */
+  flex-wrap: wrap; /* Wrap cards into rows */
+  justify-content: space-between; /* Align cards properly */
   padding: 0;
   margin: 0;
   list-style: none; /* Remove default list styling */
@@ -25,50 +24,68 @@
 
 .cards-wrapper > .cards.block > ul > li {
   display: flex; /* Make each card a flex container */
-  flex-direction: column; /* Stack image and red card body vertically */
-  flex: 0 1 calc(33.333% - 16px); /* Fixed card width for three columns */
-  box-sizing: border-box; /* Ensure consistent sizing */
-  background-color: white; /* Add a white background for cards */
+  flex-direction: row; /* Align elements side by side */
+  flex: 0 1 calc(33.333% - 12px); /* Set card width for three columns */
+  box-sizing: border-box; /* Include padding and borders */
+  background-color: #000; /* Black background */
+  border-radius: 8px; /* Rounded corners for the card */
+  margin: 0;
   overflow: hidden; /* Prevent overflow */
-  border-radius: 0; /* Remove rounded corners */
-  margin: 0; /* Remove unnecessary margins */
+  min-height: 460px; /* Ensure consistent card height */
 }
 
 .cards-wrapper > .cards.block > ul > li > .cards-card-image {
+  flex: 0 0 100%; /* Make the image take full width */
+  margin-bottom: 0;
+  position: relative; /* Position pseudo-elements relative to this div */
+}
+
+.cards-wrapper > .cards.block > ul > li > .cards-card-image::after {
+  content: '';
+  display: block;
   width: 100%;
-  display: block; /* Add this to remove inline element spacing */
-  line-height: 0; /* Add this to remove any line-height gaps */
+  height: 40px; /* Height of the red stripe */
+  background-color: #E10600; /* Stripe color */
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .cards-wrapper > .cards.block > ul > li img {
   width: 100%;
   height: auto;
-  object-fit: cover;
-  margin: 0;
-  display: block; /* Add this to remove inline element spacing */
+  object-fit: cover; /* Ensure consistent cropping */
+  display: block; /* Prevent inline gaps */
 }
 
-.cards-wrapper>.cards.block>ul>li>.cards-card-body {
-  margin: 0;
-  background-color: #eb000a;
-  color: #fff;
-  padding: 10px;
-  font-size: 0.9rem;
-  text-transform: uppercase;
+.cards-wrapper > .cards.block > ul > li > .cards-card-body {
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: row; /* Align text elements side by side */
+  justify-content: flex-start; /* Align content to the start */
+  padding: 16px; /* Space inside the text block */
+  color: #fff; /* White text color */
+  margin-top: -40px; /* Move text closer to the stripe */
 }
 
-.cards-wrapper>.cards.block>ul>li>.cards-card-body p {
-  margin: 0.3rem;
+.cards-wrapper > .cards.block > ul > li > .cards-card-body a {
+  color: #E10600; /* Make links red for emphasis */
+  text-decoration: none; /* Remove underline */
 }
 
-@media (width <= 768px) {
+.cards-wrapper > .cards.block > ul > li > .cards-card-body a:hover {
+  text-decoration: underline; /* Add subtle hover underline */
+}
+
+@media (max-width: 768px) {
   .cards-wrapper > .cards.block > ul > li {
-    flex: 0 1 calc(50% - 16px);
+    flex: 0 1 calc(50% - 12px); /* Two-column layout for medium screens */
+    min-height: 460px; /* Ensure consistent height across columns */
   }
 }
 
-@media (width <= 580px) {
+@media (max-width: 580px) {
   .cards-wrapper > .cards.block > ul > li {
-    flex: 0 1 100%;
+    flex: 0 1 100%; /* Single-column layout */
+    margin: 0 auto; /* Center cards in single-column view */
   }
 }
